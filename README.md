@@ -134,7 +134,7 @@ Constat initial : Le choix du modèle s'est révélé déterminant pour la fiabi
 
 **Phase intermédiaire** : **Llama 3.2 (3B)** : Ce modèle a apporté une amélioration significative de la compréhension et du respect des consignes. Cependant, après une période d'utilisation, un phénomène d'hallucinations récurrentes est apparu : l'agent inventait des appels d'outils inexistants, générait des réponses hors contexte, ou produisait des informations factuellement erronées, compromettant la fiabilité de l'assistant.
 
-**Phase finale** - **Qwen 2.5 (7B)** : La migration vers ce modèle a résolu la majorité des problèmes identifiés. Qwen 2.5 7B démontre une meilleure stabilité dans le suivi des instructions, une réduction significative des hallucinations, et une fiabilité accrue dans l'utilisation des outils.
+**Phase finale** - **Qwen 2.5 (7B)** : Qwen 2.5 7B démontre une meilleure stabilité dans le suivi des instructions, une réduction significative des hallucinations, et une fiabilité accrue dans l'utilisation des outils. pas parfait mais meilleure que les 2 autres modeles
 
 
 ### 2. Confusion rôle agent / rôle tool
