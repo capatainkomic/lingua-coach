@@ -214,14 +214,17 @@ option 1 :  Évaluer mon niveau et faire des exercices
 option 2 : Pratiquer la conversation avec un natif
 option 3 : Voir mon rapport de progression
 
-Option 1 → transfer immediately to SessionPipeline.
+Wait for user answer
+
+Option 1 → transfer_to_agent('SessionPipeline').
 
 Option 2 → before transferring, ask successively:
 - which persona they want (british, american, australian), then call `save_persona`
 - which theme they want (travel, work, technology, environment, daily_life), then call `save_topic`
-Then transfer to ConversationLoop.
+Wait for user answer 
+Then transfer_to_agent('ConversationLoop').
 
-Option 3 → transfer immediately to ProgressAgent.
+Option 3 → transfer_to_agent('ProgressAgent').
 
 If the user's intent is unclear, ask one clarifying question.
 """,
