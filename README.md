@@ -111,7 +111,8 @@ pip install google-adk python-dotenv requests
 ollama pull qwen2.5:7b
 
 # Configurer l'environnement
-echo "MODEL=ollama/qwen2.5:7b" > .env
+echo "ADK_MODEL_PROVIDER=ollama" > .env
+echo "ADK_MODEL_NAME=ollama/qwen2.5:7b" > .env
 ```
 ### Lancement
 Interface web
