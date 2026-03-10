@@ -5,7 +5,7 @@
 
 Lingua Coach est un système multi-agents conçu pour aider des francophones à apprendre l'anglais. L'utilisateur interagit avec un assistant intelligent qui diagnostique son niveau CECRL, lui propose des exercices adaptés, simule des conversations avec un locuteur natif, corrige ses erreurs, et lui fournit un rapport de progression.
 
->Le projet est développé avec **Google Agent Development Kit (ADK)** dans le cadre d'un projet individuel de 15h en M2 IA2 MIAGE.
+>Le projet est développé avec **Google Agent Development Kit (ADK)** dans le cadre d'un projet universitaire individuel.
 
 
 ## 🏗️ Architecture multi-agents
