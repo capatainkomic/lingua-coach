@@ -10,6 +10,9 @@ Lingua Coach est un système multi-agents conçu pour aider des francophones à 
 
 ## 🏗️ Architecture multi-agents
 
+<img width="1100" height="667" alt="image" src="https://github.com/user-attachments/assets/2abb62f5-454b-4f11-b4e0-d1c612e31fe3" />
+
+
 Le système est composé de **5 LlmAgents**, **2 Workflow Agents** et **1 agent orchestrateur**.
 
 ### Description des agents
@@ -133,15 +136,7 @@ Constat initial : Le choix du modèle s'est révélé déterminant pour la fiabi
 **Phase finale** - **Qwen 2.5 (7B)** : La migration vers ce modèle a résolu la majorité des problèmes identifiés. Qwen 2.5 7B démontre une meilleure stabilité dans le suivi des instructions, une réduction significative des hallucinations, et une fiabilité accrue dans l'utilisation des outils.
 
 
-### 2. Prompts trop détaillés — une source d'inefficacité
-
-**Problème identifié **: Les prompts initiaux étaient excessivement détaillés, avec des instructions numérotées, des règles strictes et des formats de sortie très contraints. Cette approche, loin de guider efficacement le modèle, semblait au contraire contribuer à son inefficacit é et, potentiellement, aux phénomènes d'hallucinations observés.
-
-**Analyse** : Un prompt trop rigide prive le LLM de sa capacité à raisonner naturellement et le contraint dans un cadre qui peut entrer en conflit avec son fonctionnement interne. L'agent devient alors plus susceptible d'erreurs d'interprétation.
-
-**Solution apportée** : Reformulation complète des prompts selon une approche centrée sur le rôle et l'objectif plutôt que sur la procédure (pour la plus part des agents ... :/ )
-
-### 3. Confusion rôle agent / rôle tool
+### 2. Confusion rôle agent / rôle tool
 
 **Problème :** Le `CorrectionAgent` disposait d'un tool `analyze_english_answer` qui appelait l'API LanguageTool pour détecter les erreurs grammaticales — puis retournait une liste structurée que l'agent devait reformuler. En pratique, l'agent faisait un double travail inutile : le LLM recevait une liste d'erreurs déjà formatée et devait la "présenter", ce qui créait de la redondance et des incohérences.
 
@@ -150,13 +145,13 @@ De même, certains tools "généraient du texte" (explications, formulations) al
 **Solution :** Suppression de `analyze_english_answer`. Le `CorrectionAgent` corrige directement lui-même, et peut appeler `get_word_definition` uniquement pour enrichir une explication avec une définition précise. Séparation claire : **le LLM raisonne et génère**, **les tools agissent sur le monde extérieur**.
 
 
-### 4. Gestion du state : clarification du mécanisme
+### 3. Gestion du state : clarification du mécanisme
 
 **Problème rencontré** : Les tentatives de manipulation directe du state via les instructions des agents se sont révélées infructueuses. Lorsque le prompt demandait à l'agent "d'écrire la valeur X dans le state", ou que l'agent tentait d'accéder à une valeur du state, rien ne se produisait ou les résultats étaient incohérents.
 
 **Solution apportée** : Création d'outils dédiés pour toutes les interactions avec le state
 
-### 5. Séparation des responsabilités entre agents
+### 4. Séparation des responsabilités entre agents
 
 **Séparation des responsabilités** : Initialement, `LevelAgent` cumulait les fonctions d'évaluation et de correction, ce qui dupliquait la logique de `CorrectionAgent`. La solution a consisté à déléguer systématiquement la correction à `CorrectionAgent` via `correction_agent_tool` (AgentTool), conformément au principe de responsabilité unique.
 
